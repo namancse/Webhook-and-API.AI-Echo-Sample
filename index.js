@@ -13,8 +13,8 @@ bot.dialog('/echo', function (session) {
 
 // Setup Restify Server
 var server = restify.createServer();
-server.post('/api/messages', connector.listen());
-server.listen(process.env.port || 3978, function () {
+server.post('/echo', connector.listen());
+server.listen(process.env.port || 8000, function () {
     console.log('%s listening to %s', server.name, server.url); 
 });
 /*
