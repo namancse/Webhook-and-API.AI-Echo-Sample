@@ -19,6 +19,54 @@ server.listen(process.env.port || 8000, function () {
     console.log('%s listening to %s', server.name, server.url); 
 });
 */
+//----------------------------------------------------------------------------------------------------------
+// /*
+var restify = require('restify');
+var builder = require('botbuilder');
+
+// Setup Restify Server
+var server = restify.createServer();
+server.listen(8000 , function () {
+   console.log('%s listening to %s', server.name, server.url); 
+});
+
+// Create chat connector for communicating with the Bot Framework Service
+var connector = new builder.ChatConnector({
+    appId: process.env.MICROSOFT_APP_ID,
+    appPassword: process.env.MICROSOFT_APP_PASSWORD
+});
+
+// Listen for messages from users 
+//server.post('/echo', connector.listen());
+
+
+// Receive messages from the user and respond by echoing each message back (prefixed with 'You said:')
+// Create your bot with a function to receive messages from the user
+// Create bot and default message handler
+var bot = new builder.UniversalBot();
+
+  //  session.send("Hi... welcome to FMR");
+
+bot.dialog('/echo', [
+    function (session) {
+        builder.Prompts.text(session, 'What is your name?');
+    },
+    function (session, results) {
+        session.send('Hello %s!', results.response);
+        session.send('Do you want to log in?');
+    }
+]);
+bot.dialog('/askName', [
+    function (session) {
+        builder.Prompts.text(session, 'Hi! What is your name?');
+    },
+    function (session, results) {
+        session.endDialogWithResult(results);
+    }
+]);
+
+// */
+/*
 'use strict';
 
 const express = require('express');
@@ -102,3 +150,4 @@ restService.listen((process.env.PORT || 8000), function() {
     console.log("Server up and listening");
 });
 
+*/
