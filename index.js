@@ -1,3 +1,4 @@
+/*
 var restify = require('restify');
 var builder = require('botbuilder');
 
@@ -17,7 +18,7 @@ server.post('/echo', connector.listen());
 server.listen(process.env.port || 8000, function () {
     console.log('%s listening to %s', server.name, server.url); 
 });
-/*
+*/
 'use strict';
 
 const express = require('express');
@@ -100,4 +101,4 @@ restService.post('/slack-test', function(req, res) {
 restService.listen((process.env.PORT || 8000), function() {
     console.log("Server up and listening");
 });
-*/
+
